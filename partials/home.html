@@ -1,0 +1,177 @@
+<div class="row">
+      <div class="large-8 medium-8 columns">
+		  <label class="checkbox">
+		    <input type="checkbox" ng-model="oneAtATime">
+		    Open only one at a time
+		  </label>
+
+		  <!-- Accordian -->
+		  <accordion close-others="oneAtATime">
+		    <accordion-group heading="Static Header, initially expanded" is-open="true">
+		      This content is straight in the template.
+		    </accordion-group>
+		    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+		      {{group.content}}
+		    </accordion-group>
+		    <accordion-group heading="Dynamic Body Content">
+		      <p>The body of the accordion group grows to fit the contents</p>
+		        <button class="button small" ng-click="addItem()">Add Item</button>
+		        <div ng-repeat="item in items">{{item}}</div>
+		    </accordion-group>
+		    <accordion-group is-open="isopen">
+		        <accordion-heading>
+		            I can have markup, too! <i class="right" ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+		        </accordion-heading>
+		        This is just some content to illustrate fancy headings.
+		    </accordion-group>
+		  </accordion>
+
+		  <!--Alert -->
+		  <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+		  <button class='button' ng-click="addAlert()">Add Alert</button>
+
+
+		  <!-- Button -->
+		  <h4>Single toggle</h4>
+	      <pre>{{singleModel}}</pre>
+	      <button type="button" class="button" ng-model="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+	          Single Toggle
+	      </button>
+	      <h4>Checkbox</h4>
+	      <pre>{{checkModel}}</pre>
+	      <div class="button-group">
+	          <button type="button" class="button" ng-model="checkModel.left" btn-checkbox>Left</button>
+	          <button type="button" class="button" ng-model="checkModel.middle" btn-checkbox>Middle</button>
+	          <button type="button" class="button" ng-model="checkModel.right" btn-checkbox>Right</button>
+	      </div>
+	      <h4>Radio</h4>
+	      <pre>{{radioModel}}</pre>
+	      <div class="button-group">
+	          <button type="button" class="button" ng-model="radioModel" btn-radio="'Left'">Left</button>
+	          <button type="button" class="button" ng-model="radioModel" btn-radio="'Middle'">Middle</button>
+	          <button type="button" class="button" ng-model="radioModel" btn-radio="'Right'">Right</button>
+	      </div>
+
+	      <!-- Drop down Toggle -->
+	      <p>
+		    <a dropdown-toggle="#dropdown-example-1">Click me for a dropdown, yo!</a>
+		  </p>
+		  <ul id="dropdown-example-1" class="f-dropdown">
+		    <li ng-repeat="choice in items">
+		      <a>{{choice}}</a>
+		    </li>
+		  </ul>
+
+		  <a class="button dropdown" dropdown-toggle="#dropdown-example-2">Dropdowns can also have links!</a>
+		  <ul id="dropdown-example-2" class="f-dropdown">
+		    <li ng-repeat="(label, url) in linkItems">
+		      <a href="{{url}}" target="_blank">{{label}}</a>
+		    </li>
+		  </ul>
+
+		  <a class="button split">
+		    Split Button
+		    <span dropdown-toggle="#dropdown-example-3"></span>
+		  </a>
+		  <ul id="dropdown-example-3" class="f-dropdown">
+		    <li ng-repeat="choice in items">
+		      <a>{{choice}}</a>
+		    </li>
+		  </ul>
+
+		  <!-- Interchange content -->
+		  <img interchange="[assets/img/space-small.jpg, (small)],
+		                    [assets/img/space-medium.jpg, (medium)],
+		                    [assets/img/space-large.jpg, (large)]"
+		       src="assets/img/space-small.jpg">
+
+		  <p class="panel">Resize the window to update the content</p>
+
+		  <!-- Modal -->
+		  <script type="text/ng-template" id="myModalContent.html">
+		      <h3>Im a modal!</h3>
+		      <ul>
+		        <li ng-repeat="item in items">
+		          <a ng-click="selected.item = item">{{ item }}</a>
+		        </li>
+		      </ul>
+		      <p>Selected: <b>{{ selected.item }}</b></p>
+		      <button class="button" ng-click="ok()">OK</button>
+		      <a class="close-reveal-modal" ng-click="cancel()">&#215;</a>
+		  </script>
+
+		  <button class="button" ng-click="open()">Open me!</button>
+		  <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+
+
+		  <!-- Off Canvas -->
+		  <div class="off-canvas-wrap">
+	        <div class="inner-wrap">
+	            <nav class="tab-bar">
+	                <section class="left-small">
+	                    <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
+	                </section>
+
+	                <section class="middle tab-bar-section">
+	                    <h1 class="title">OffCanvas</h1>
+	                </section>
+
+	                <section class="right-small">
+	                    <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
+	                </section>
+
+	            </nav>
+
+	            <aside class="left-off-canvas-menu">
+	                <ul class="off-canvas-list">
+	                    <li><a href="#">Left Sidebar</a></li>
+	                </ul>
+	            </aside>
+	            <aside class="right-off-canvas-menu">
+	                <ul class="off-canvas-list">
+	                    <li><a href="#">Right Sidebar</a></li>
+	                </ul>
+	            </aside>
+	            <section class="main-section">
+	                <div class="small-12 columns">
+	                    <h1>How to use</h1>
+	                    <p>Just use the standard layout for an offcanvas page as documented in the <a href="http://foundation.zurb.com/docs/components/offcanvas.html">foundation docs</a></p>
+	                    <p>As long as you include mm.foundation.offcanvas it should simply work</p>
+	                </div>
+	            </section>
+
+	            <a class="exit-off-canvas"></a>
+	        </div>
+    	</div>	
+
+    	<!-- Top Bar -->
+    	<top-bar>
+    	    <ul class="title-area">
+    	      <li class="name">
+    	        <h1><a href="#">My Site</a></h1>
+    	      </li>
+    	      <li toggle-top-bar class="menu-icon"><a href="#">Menu</a></li>
+    	    </ul>
+
+    	    <top-bar-section>
+    	      <!-- Right Nav Section -->
+    	      <ul class="right">
+    	        <li class="active"><a href="#">Active</a></li>
+    	        <li has-dropdown>
+    	          <a href="#">Dropdown</a>
+    	          <ul top-bar-dropdown>
+    	            <li><a href="#">First link in dropdown</a></li>
+    	          </ul>
+    	        </li>
+    	      </ul>
+
+    	      <!-- Left Nav Section -->
+    	      <ul class="left">
+    	        <li><a href="#">Left</a></li>
+    	      </ul>
+    	    </top-bar-section>
+    	  </top-bar>
+
+    	  
+	</div>
+</div>
